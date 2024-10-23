@@ -4,22 +4,29 @@
     <todo-form @addNew="addTodo"></todo-form>
     <h2>{{ listSummary }}</h2>
     <div>
-      <todo-item v-for="(item, index) in todos" :key="index" :label="item.label" :done="item.done" :id="index" @changed="updateStatus(index)"></todo-item>
+      <todo-item
+        v-for="(item, index) in todos"
+        :key="index"
+        :label="item.label"
+        :done="item.done"
+        :id="index"
+        @changed="updateStatus(index)"
+      ></todo-item>
     </div>
   </div>
 </template>
 
 <script>
-import TodoItem from "./components/TodoItem.vue"
-import TodoForm from "./components/TodoForm.vue"
+import TodoItem from "./components/TodoItem.vue";
+import TodoForm from "./components/TodoForm.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     TodoItem,
     TodoForm,
   },
-  data(){
+  data() {
     return {
       todos: [
         {
@@ -30,25 +37,37 @@ export default {
           label: "task 2",
           done: false,
         },
-      ]
-    }
+        {
+          label: "task 2",
+          done: false,
+        },
+        {
+          label: "task 2",
+          done: false,
+        },
+        {
+          label: "task 2",
+          done: false,
+        },
+      ],
+    };
   },
   methods: {
     addTodo(value) {
       this.todos.push({
         label: value,
-        done: false
-      })
+        done: false,
+      });
     },
-    updateStatus(index){
-      this.todos[index].done = !this.todos[index].done
-    }
+    updateStatus(index) {
+      this.todos[index].done = !this.todos[index].done;
+    },
   },
   computed: {
     listSummary() {
-      const doneLen = this.todos.filter((item) =>item.done).length
-      return `${doneLen} out of ${this.todos.length} items completed`
-    }
-  }
-}
+      const doneLen = this.todos.filter((item) => item.done).length;
+      return `${doneLen} out of ${this.todos.length} items completed`;
+    },
+  },
+};
 </script>
